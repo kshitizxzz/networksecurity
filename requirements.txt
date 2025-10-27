@@ -1,0 +1,13 @@
+python-dotenv
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn 
+flask
+requests
+beautifulsoup4
+nltk
+tensorflow
+keras
+
