@@ -3,13 +3,10 @@ pandas
 numpy
 scikit-learn
 matplotlib
-seaborn 
+seaborn
 flask
 requests
 beautifulsoup4
 nltk
 tensorflow
 keras
-
-// -e .
-
