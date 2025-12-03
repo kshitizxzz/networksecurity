@@ -23,12 +23,12 @@ def get_requirements()->List[str]:
 
     return requirement_lst
 setup(
-    name = 'Network Security'
-    version = '0.0.1'
-    author = 'Kshitiz'
-    author_email = 'ms24btech11017@iith.ac.in'
-    packages = find_packages()
-    install_requires = get_requirements()
+    name = 'Network Security',
+    version = '0.0.1',
+    author = 'Kshitiz',
+    author_email = 'ms24btech11017@iith.ac.in',
+    packages = find_packages(),
+    install_requires = get_requirements() 
 )
 
 
