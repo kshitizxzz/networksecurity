@@ -5,3 +5,4 @@ pymongo[srv]==3.6
 pymongo
 pylance
 certifi
+scikit-learn
