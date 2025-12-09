@@ -1,11 +1,11 @@
-// python-dotenv
-// pandas
-// numpy
-// pymongo[srv]==3.6
-// pymongo
-// pylance
-// certifi
-// scikit-learn
+python-dotenv
+pandas
+numpy
+pymongo[srv]==3.6
+pymongo
+pylance
+certifi
+scikit-learn
 dill
 pyaml
 

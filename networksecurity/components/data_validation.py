@@ -10,10 +10,12 @@ from networksecurity.logging.logger import logging
 
 from networksecurity.constant.training_pipeline import SCHEMA_FILE_PATH
 
+
 import pandas as pd 
 import os,sys
 
 from networksecurity.utils.main_utils.utils import read_yaml_file 
+from networksecurity.utils.main_utils.utils import write_yaml_file
 
 class DataValidation:
     def __init__(self,data_ingestion_artifact: DataIngestionArtifact,
@@ -59,6 +61,26 @@ class DataValidation:
 
 
             # check data drift
+            status = self.detect_dataset_drift(base_df = train_dataframe ,current_df=test_dataframe)
+            dir_path = os.path.dirname(self.data_validation_config.valid_train_file_path)
+            os.makedirs(dir_path,exist_ok=True)
+
+            train_dataframe.to_csv(
+                self.data_validation_config.valid_train_file_path , index = False , header = True
+            )
+            test_dataframe.to_csv(
+                self.data_validation_config.valid_test_file_path ,index=False , header = True
+            )
+            data_validation_artifact = DataValidationArtifact(
+                    validation_status =  status,
+                    valid_train_file_path = self.data_ingestion_artifact.trained_file_path,
+                    valid_test_file_path = self.data_validation_artifact.test_file_path,
+                    invalid_train_file_path = None ,
+                    invalid_test_file_path = None , 
+                    drift_report_file_path = self.data_validation_config.drift_report_file_path,
+                
+            )
+            return data_validation_artifact
 
 
         except Exception as e :
@@ -97,6 +119,16 @@ class DataValidation:
                     'drift_status':is_found
                     }})
             drift_report_file_path = self.data_validation_config.drift_report_file_path
+
+            # create directory
+
+            dir_path =  os.path.dirname(drift_report_file_path)
+            os.makedirs(dir_path,exist_ok=True)
+            write_yaml_file(file_path = drift_report_file_path , content = report)
+
+            
+            
+
             
         except Exception as e :
             raise NetworkSecurityException(e,sys)
