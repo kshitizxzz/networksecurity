@@ -14,7 +14,6 @@ class TrainingPipelineConfig:
         self.timestamp: str = timestamp
 
 
-
 class DataIngestionConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
 
@@ -24,16 +23,22 @@ class DataIngestionConfig:
         ) 
         self.feature_store_file_path: str = os.path.join(
             self.data_ingestion_dir , training_pipeline.DATA_INGESTION_FEATURE_STORE_DIR , training_pipeline.FILE_NAME
-        )
+        )       #it has raw data file from mongo db 
+
+
+        # # splited into train and test so train rows and columns are here 
+
         self.training_file_path: str = os.path.join(
             self.data_ingestion_dir , training_pipeline.DATA_INGESTION_INGESTED_DIR , training_pipeline.TRAIN_FILE_NAME
-        )
+        )       
         self.testing_file_path: str = os.path.join(
             self.data_ingestion_dir , training_pipeline.DATA_INGESTION_INGESTED_DIR , training_pipeline.TEST_FILE_NAME
         )
-        self.train_test_split_ratio: float = training_pipeline.DATA_INGESTION_TRAIN_TEST_SPLIT_RATION
-        self.collection_name: str = training_pipeline.DATA_INGESTION_COLLECTION_NAME
-        self.database_name: str = training_pipeline.DATA_INGESTION_DATABASE_NAME    
+
+        
+        self.train_test_split_ratio: float = training_pipeline.DATA_INGESTION_TRAIN_TEST_SPLIT_RATION  
+        self.collection_name: str = training_pipeline.DATA_INGESTION_COLLECTION_NAME  #NetworkData 
+        self.database_name: str = training_pipeline.DATA_INGESTION_DATABASE_NAME    #kshitiz in mongodb
 
 
 class DataValidationConfig:
@@ -52,4 +57,9 @@ class DataValidationConfig:
         )
 
 
-
+class DataTransformationConfig:
+    def __init__(self , training_pipeline_config: TrainingPipelineConfig):
+        self.data_transformation_dir: str = os.path.join(training_pipeline_config.artifact_dir,training_pipeline.DATA_TRANSFORMATION_DIR_NAME)
+        self.transformed_train_file_path:str = os.path.join(self.data_transformation_dir , training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR)
+        self.transformed_test_file_path:str = os.path.join(self.data_transformation_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,training_pipeline.TRAIN_FILE_NAME.replace('csv' , 'npy'))
+        self.transfored_object_file_path:str = os.path.join(self.data_transformation_dir , training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR ,training_pipeline.PREPROCESSING_OBJECT_FILE_NAME,training_pipeline.TEST_FILE_NAME.replace('csv' , 'npy'))
