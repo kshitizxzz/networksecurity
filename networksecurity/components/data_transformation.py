@@ -37,7 +37,7 @@ class DataTransformation:
             raise NetworkSecurityException(e, sys)
         
         
-    def get_data_transformer_obkect(cls)->Pipeline:
+    def get_data_transformer_object(self)->Pipeline:
 
         '''
         Docstring for get_data_transformer_obkect
@@ -56,7 +56,7 @@ class DataTransformation:
             logging.info(
                 f'Initialize KNNImputer with {DATA_TRANSFORMATION_IMPUTER_PARAMS}'
             )
-            processor : Pipeline = Pipeline([('imputer' )])
+            processor : Pipeline = Pipeline([('imputer' , imputer )])
             return processor
         
         except Exception as e:
