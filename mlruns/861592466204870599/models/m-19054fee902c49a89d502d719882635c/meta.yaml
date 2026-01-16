@@ -1,0 +1,10 @@
+artifact_location: file:///Users/aviral/Desktop/NETWORKSECURITY/mlruns/861592466204870599/models/m-19054fee902c49a89d502d719882635c/artifacts
+creation_timestamp: 1768591789640
+experiment_id: '861592466204870599'
+last_updated_timestamp: 1768591792272
+model_id: m-19054fee902c49a89d502d719882635c
+model_type: null
+name: model
+source_run_id: 8e3e6e26d35543818ebcd0352e000e0f
+status: 2
+status_message: null

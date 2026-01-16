@@ -1,0 +1,22 @@
+artifact_path: file:///Users/aviral/Desktop/NETWORKSECURITY/mlruns/861592466204870599/models/m-67a79099c1e14a8f9ff78a2e285e197d/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.0
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+mlflow_version: 3.8.1
+model_id: m-67a79099c1e14a8f9ff78a2e285e197d
+model_size_bytes: 3393697
+model_uuid: m-67a79099c1e14a8f9ff78a2e285e197d
+prompts: null
+run_id: ac4e5c5bb8c145a38d5704436bc2a249
+utc_time_created: '2026-01-16 19:29:52.301229'

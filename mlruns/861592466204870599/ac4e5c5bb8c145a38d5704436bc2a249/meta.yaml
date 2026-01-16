@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/aviral/Desktop/NETWORKSECURITY/mlruns/861592466204870599/ac4e5c5bb8c145a38d5704436bc2a249/artifacts
+end_time: 1768591793965
+entry_point_name: ''
+experiment_id: '861592466204870599'
+lifecycle_stage: active
+run_id: ac4e5c5bb8c145a38d5704436bc2a249
+run_name: bedecked-elk-49
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1768591792287
+status: 3
+tags: []
+user_id: aviral

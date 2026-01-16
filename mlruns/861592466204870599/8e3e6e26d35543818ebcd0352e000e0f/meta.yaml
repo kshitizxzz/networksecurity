@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/aviral/Desktop/NETWORKSECURITY/mlruns/861592466204870599/8e3e6e26d35543818ebcd0352e000e0f/artifacts
+end_time: 1768591792275
+entry_point_name: ''
+experiment_id: '861592466204870599'
+lifecycle_stage: active
+run_id: 8e3e6e26d35543818ebcd0352e000e0f
+run_name: capable-fawn-171
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1768591789629
+status: 3
+tags: []
+user_id: aviral
