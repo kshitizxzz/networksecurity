@@ -11,6 +11,7 @@ jobs:
   integration:
     name: Continuous Integration
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -27,40 +28,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Install Utilities
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq unzip
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Checkout Code (force clean)
+        uses: actions/checkout@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          fetch-depth: 0
+          clean: true
 
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: DEBUG – show Dockerfile used by CI
+      - name: FORCE DEBUG – show Dockerfile
         run: |
           echo "PWD:"
           pwd
+          echo "Git commit:"
+          git rev-parse HEAD
           echo "Files:"
           ls -la
+          echo "Dockerfile size:"
+          wc -c Dockerfile
           echo "Dockerfile content:"
-          sed -n '1,5p' Dockerfile
+          cat Dockerfile
 
-      - name: Build, tag, and push image to Amazon ECR
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
-          IMAGE_TAG: latest
+      - name: Build Docker image (explicit + no cache)
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          docker build --no-cache -f Dockerfile -t test-image .
