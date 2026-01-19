@@ -45,6 +45,16 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: DEBUG – show Dockerfile used by CI
+        run: |
+          echo "PWD:"
+          pwd
+          echo "Files:"
+          ls -la
+          echo "Dockerfile content:"
+          sed -n '1,5p' Dockerfile
+
+          
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
