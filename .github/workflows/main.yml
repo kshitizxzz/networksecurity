@@ -28,25 +28,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code (force clean)
+      - name: Checkout repository (MANDATORY)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
           clean: true
+          fetch-depth: 0
 
-      - name: FORCE DEBUG – show Dockerfile
+      - name: Verify Dockerfile used by CI
         run: |
           echo "PWD:"
           pwd
-          echo "Git commit:"
-          git rev-parse HEAD
-          echo "Files:"
-          ls -la
-          echo "Dockerfile size:"
-          wc -c Dockerfile
           echo "Dockerfile content:"
           cat Dockerfile
+          echo "Dockerfile size:"
+          wc -c Dockerfile
 
-      - name: Build Docker image (explicit + no cache)
+      - name: Build Docker image
         run: |
           docker build --no-cache -f Dockerfile -t test-image .
