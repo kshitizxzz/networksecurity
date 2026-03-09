@@ -1,0 +1,10 @@
+venv
+.git
+.gitignore
+__pycache__
+*.pyc
+logs
+artifacts
+mlruns
+*.log
+.ipynb_checkpoints

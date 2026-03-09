@@ -1,8 +1,7 @@
 python-dotenv
 pandas
 numpy
-pymongo[srv]==3.6
-pymongo
+pymongo[srv]==4.7.2
 pylance
 certifi
 scikit-learn
@@ -12,4 +11,3 @@ mlflow
 dagshub
 fastapi
 uvicorn
--e .
